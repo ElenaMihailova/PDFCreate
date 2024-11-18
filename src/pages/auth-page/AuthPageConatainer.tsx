@@ -10,7 +10,7 @@ export const AuthPage = () => {
 
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/form");
+    navigate("/clinics");
     console.log("Авторизация");
   };
 
