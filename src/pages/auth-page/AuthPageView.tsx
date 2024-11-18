@@ -7,13 +7,22 @@ import {
   Paper,
 } from '@mui/material';
 
-export const AuthPageView = () => {
+interface AuthPageViewProps {
+  handleLogin: (event: React.FormEvent) => void;
+  login: string;
+  setLogin: (value: string) => void;
+  password: string;
+  setPassword: (value: string) => void;
+}
 
-  const handleLogin = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log('Авторизация');
-  };
 
+export const AuthPageView: React.FC<AuthPageViewProps> = ({
+  handleLogin,
+  login,
+  setLogin,
+  password,
+  setPassword
+}) => {
   return (
     <Container
       maxWidth="xs"
@@ -58,6 +67,8 @@ export const AuthPageView = () => {
             variant="outlined"
             fullWidth
             required
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
           />
           <TextField
             label="Пароль"
@@ -65,6 +76,8 @@ export const AuthPageView = () => {
             variant="outlined"
             fullWidth
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Button
             type="submit"
