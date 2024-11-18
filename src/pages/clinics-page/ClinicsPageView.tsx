@@ -6,9 +6,14 @@ import {
   ListItemText,
 } from "@mui/material";
 
+interface Clinic {
+  name: string;
+  id: string;
+}
+
 interface ClinicsPageViewProps {
-  clinics: string[];
-  handleClinicClick: (clinic: string) => void;
+  clinics: Clinic[];
+  handleClinicClick: (id: string) => void;
 }
 
 export const ClinicsPageView: React.FC<ClinicsPageViewProps> = ({
@@ -21,9 +26,9 @@ export const ClinicsPageView: React.FC<ClinicsPageViewProps> = ({
         Выберите клинику, в которой оказывались услуги
       </Typography>
       <List>
-        {clinics.map((clinic, index) => (
-          <ListItemButton key={index} onClick={() => handleClinicClick(clinic)}>
-            <ListItemText primary={clinic} />
+        {clinics.map((clinic) => (
+          <ListItemButton key={clinic.id} onClick={() => handleClinicClick(clinic.id)}>
+            <ListItemText primary={clinic.name} />
           </ListItemButton>
         ))}
       </List>
