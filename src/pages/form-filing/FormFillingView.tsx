@@ -5,6 +5,7 @@ import TaxpayerForm from "../../components/taxpayer-form/TaxpayerForm";
 import PatientForm from "../../components/patient-form/PatientForm";
 import FinancialInfoForm from "../../components/financial-info-form/FinancialInfoForm";
 import ResponsibilityForm from "../../components/responsibility-form/ResponsibilityForm";
+import { YearBlock } from "../../components/year-block/YearBlock";
 
 interface FormFillingViewProps {
   organizationData: {
@@ -20,6 +21,7 @@ export const FormFillingView: React.FC<FormFillingViewProps> = ({
   return (
     <Stack>
       <CountBlock />
+      <YearBlock/>
       <OrganizationForm organizationData={organizationData} />
       <TaxpayerForm />
       <ResponsibilityForm />

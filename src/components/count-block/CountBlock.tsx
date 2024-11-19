@@ -7,13 +7,6 @@ const CountBlock = () => {
       <TextField label="Номер корректировки" variant="outlined" fullWidth />
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="Отчетный год"
-          variant="outlined"
-          fullWidth
-        />
-      </Box>
-      <Box sx={{ marginBottom: 2 }}>
-        <TextField
           label="Страница (нумерация)"
           variant="outlined"
           fullWidth

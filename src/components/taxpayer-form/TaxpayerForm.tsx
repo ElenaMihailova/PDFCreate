@@ -41,9 +41,14 @@ const TaxpayerForm: React.FC = () => {
           fullWidth
         />
       </Box>
-      <Box sx={{ marginBottom: 2 }}>
-        <TextField label="Код вида документа" variant="outlined" fullWidth />
+
+      <Box sx={{ marginBottom: 2, textAlign: 'left' }}>
+        <Typography variant="body1">
+          <strong>Код вида документа:</strong> 21 Паспорт гражданина Российской
+          Федерации
+        </Typography>
       </Box>
+
       <Box sx={{ marginBottom: 2 }}>
         <TextField
           label="Серия и номер документа"

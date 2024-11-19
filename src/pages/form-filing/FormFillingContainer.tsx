@@ -5,7 +5,6 @@ import medicalOrganizations from "../../data/medical-organizations";
 
 export const FormFillingPage = () => {
   const [cookies] = useCookies(["clinicId"]);
-  console.log(cookies.clinicId);
   const [organizationData, setOrganizationData] = useState({
     inn: "",
     kpp: "",
@@ -14,14 +13,12 @@ export const FormFillingPage = () => {
 
   useEffect(() => {
     const clinicId = String(cookies.clinicId);
-    console.log("clinicId from cookies:", clinicId);
   
     const organization = medicalOrganizations.find((org) =>
       org.clinicIds.includes(clinicId)
     );
   
     if (organization) {
-      console.log("Found organization:", organization);
       setOrganizationData({
         inn: organization.inn,
         kpp: organization.kpp,
