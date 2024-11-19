@@ -27,7 +27,11 @@ export const ClinicsPageView: React.FC<ClinicsPageViewProps> = ({
       </Typography>
       <List>
         {clinics.map((clinic) => (
-          <ListItemButton key={clinic.id} onClick={() => handleClinicClick(clinic.id)}>
+          <ListItemButton
+            key={clinic.id}
+            data-id={clinic.id}
+            onClick={() => handleClinicClick(clinic.id)}
+          >
             <ListItemText primary={clinic.name} />
           </ListItemButton>
         ))}

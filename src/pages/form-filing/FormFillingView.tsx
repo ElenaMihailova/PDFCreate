@@ -6,15 +6,25 @@ import PatientForm from "../../components/patient-form/PatientForm";
 import FinancialInfoForm from "../../components/financial-info-form/FinancialInfoForm";
 import ResponsibilityForm from "../../components/responsibility-form/ResponsibilityForm";
 
-export const FormFillingView = () => {
+interface FormFillingViewProps {
+  organizationData: {
+    inn: string;
+    kpp: string;
+    shortName: string;
+  };
+}
+
+export const FormFillingView: React.FC<FormFillingViewProps> = ({
+  organizationData,
+}) => {
   return (
     <Stack>
-      <CountBlock/>
-      <OrganizationForm />
-      <TaxpayerForm/>
-      <ResponsibilityForm/>
-      <FinancialInfoForm/>
-      <PatientForm/>
+      <CountBlock />
+      <OrganizationForm organizationData={organizationData} />
+      <TaxpayerForm />
+      <ResponsibilityForm />
+      <FinancialInfoForm />
+      <PatientForm />
     </Stack>
-  )
+  );
 };

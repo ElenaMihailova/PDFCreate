@@ -1,7 +1,17 @@
 import React from "react";
 import { Box, TextField, Typography } from "@mui/material";
 
-const OrganizationForm: React.FC = () => {
+interface OrganizationFormProps {
+  organizationData: {
+    inn: string;
+    kpp: string;
+    shortName: string;
+  };
+}
+
+const organizationForm: React.FC<OrganizationFormProps> = ({
+  organizationData,
+}) => {
   return (
     <Box sx={{ padding: 2 }}>
       <Typography variant="h6" gutterBottom>
@@ -9,9 +19,15 @@ const OrganizationForm: React.FC = () => {
       </Typography>
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="ИНН медицинской организации"
+          label="ИНН медицинской организации/ИП"
           variant="outlined"
           fullWidth
+          value={organizationData.inn}
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
@@ -19,20 +35,30 @@ const OrganizationForm: React.FC = () => {
           label="КПП медицинской организации"
           variant="outlined"
           fullWidth
+          value={organizationData.kpp}
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
         />
       </Box>
-      <Box sx={{ marginBottom: 2 }}>
-        <TextField label="Отчетный год" variant="outlined" fullWidth />
-      </Box>
+
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="Hаименование организации"
+          label="Сокращенное наименование (или полное)"
           variant="outlined"
           fullWidth
+          value={organizationData.shortName}
+          slotProps={{
+            input: {
+              readOnly: true,
+            },
+          }}
         />
       </Box>
     </Box>
   );
 };
 
-export default OrganizationForm;
+export default organizationForm;
