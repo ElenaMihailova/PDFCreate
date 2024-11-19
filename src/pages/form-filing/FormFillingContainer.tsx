@@ -11,13 +11,15 @@ export const FormFillingPage = () => {
     shortName: "",
   });
 
+  const [indicatorValue, setIndicatorValue] = useState<string>("1");
+
   useEffect(() => {
     const clinicId = String(cookies.clinicId);
-  
+
     const organization = medicalOrganizations.find((org) =>
       org.clinicIds.includes(clinicId)
     );
-  
+
     if (organization) {
       setOrganizationData({
         inn: organization.inn,
@@ -33,7 +35,12 @@ export const FormFillingPage = () => {
       });
     }
   }, [cookies.clinicId]);
-  
 
-  return <FormFillingView organizationData={organizationData} />;
+  return (
+    <FormFillingView
+      organizationData={organizationData}
+      indicatorValue={indicatorValue}
+      setIndicatorValue={setIndicatorValue}
+    />
+  );
 };

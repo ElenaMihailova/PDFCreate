@@ -5,7 +5,7 @@ const PatientForm: React.FC = () => {
   return (
     <Box sx={{ padding: 2 }}>
       <Typography variant="h6" gutterBottom>
-        Данные пациента (если применимо)
+        Данные пациента
       </Typography>
       <Box sx={{ marginBottom: 2 }}>
         <TextField label="Фамилия" variant="outlined" fullWidth />

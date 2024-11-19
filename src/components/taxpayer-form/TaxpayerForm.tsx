@@ -3,11 +3,6 @@ import {
   Box,
   TextField,
   Typography,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
 } from "@mui/material";
 
 const TaxpayerForm: React.FC = () => {
@@ -64,17 +59,6 @@ const TaxpayerForm: React.FC = () => {
           variant="outlined"
           fullWidth
         />
-      </Box>
-      <Box sx={{ marginBottom: 2 }}>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">
-            Признак: Налогоплательщик и пациент являются одним лицом
-          </FormLabel>
-          <RadioGroup row>
-            <FormControlLabel value="1" control={<Radio />} label="Да" />
-            <FormControlLabel value="0" control={<Radio />} label="Нет" />
-          </RadioGroup>
-        </FormControl>
       </Box>
     </Box>
   );

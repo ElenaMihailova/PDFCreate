@@ -9,21 +9,21 @@ const ResponsibilityForm: React.FC = () => {
       </Typography>
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="Фамилия сотрудника медицинской организации/ИП"
+          label="Фамилия сотрудника медицинской организации"
           variant="outlined"
           fullWidth
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="Имя сотрудника медицинской организации/ИП"
+          label="Имя сотрудника медицинской организации"
           variant="outlined"
           fullWidth
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
         <TextField
-          label="Отчество сотрудника медицинской организации/ИП (если есть)"
+          label="Отчество сотрудника медицинской организации"
           variant="outlined"
           fullWidth
         />
