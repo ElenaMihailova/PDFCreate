@@ -1,16 +1,22 @@
 import createCertificate from "./generateReport.js";
 
-const Constructor = () => {
+interface ConstructorProps {
+  orgData: string; // Название организации
+  inn: string;     // ИНН
+  kpp: string;     // КПП
+}
+
+const Constructor: React.FC<ConstructorProps> = ({ orgData, inn, kpp }) => {
   const handleCreatePdf = () => {
     const data = {
       Correction_num: "1  2  3",
       Blank_num: "4  5  6",
-      Org_data: "О  О О  Б  Ь Ю  Т  И    Э  С  Т  Е  Т  И  К",
-      INN: "7  8  1  4  6  9  6  6  1  5",
-      KPP: "7  8  4  2  0  1  0  0  1",
-      LastName: "Ромашка",
-      FirstName: "11",
-      MiddleName: "11",
+      // Org_data: "О  О О  Б  Ь Ю Т И    Э  С  Т  Е  Т И К",
+      // INN: "7  8  1  4  6  9  6  6  1  5",
+      // KPP: "7  8  4  2  0  1  0  0  1",
+      Org_data: orgData.split("").join("  "),
+      INN: inn.split("").join("  "),
+      KPP: kpp.split("").join("  "),   
 
       Patient_last_name: "И  в  а  н  о  в",
       Patient_first_name: "И  в  а  н",
@@ -20,7 +26,7 @@ const Constructor = () => {
       Payer_last_name: "С  и  д  о  р  о  в",
       Payer_first_name: "П  е  т  р",
       Payer_middle_name: "П  е  т  р  о  в  и  ч",
-      Payer_DD: "1  5",
+      Payer_DD: "1  5", 
       Payer_MM: "1  0",
       Payer_YYYY: "2  0  2  4",
       Patient_DD: "2  0",
