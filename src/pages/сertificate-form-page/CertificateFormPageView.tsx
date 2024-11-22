@@ -11,6 +11,31 @@ interface CertificateFormViewProps {
   year: number;
   reportNumber: string;
   reportCorNumber: string;
+  responsibility: {
+    lastName: string;
+    firstName: string;
+    middleName: string;
+    date: string;
+  };
+  patient: {
+    lastName: string;
+    firstName: string;
+    middleName: string;
+    taxpayerId?: string;
+    birthDate?: string;
+    documentNumber?: string;
+    documentIssueDate?: string;
+  };
+  taxpayer: {
+    lastName: string;
+    firstName: string;
+    middleName: string;
+    taxpayerId: string;
+    birthDate: string;
+    documentCode?: string;
+    documentNumber: string;
+    documentIssueDate: string;
+  };
 }
 
 export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
@@ -18,7 +43,12 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
   year,
   reportNumber,
   reportCorNumber,
+  responsibility,
+  taxpayer,
+  patient,
 }) => {
+
+  console.log(taxpayer)
   return (
     <Stack>
       <ReportSummary
@@ -26,6 +56,9 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
         year={year}
         reportNumber={reportNumber}
         reportCorNumber={reportCorNumber}
+        responsibility={responsibility}
+        taxpayer={taxpayer}
+        patient={patient}
       />
       <Constructor
         orgData={data.clinicName}
@@ -34,6 +67,9 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
         year={year}
         reportNumber={reportNumber}
         reportCorNumber={reportCorNumber}
+        taxpayer={taxpayer}
+        responsibility={responsibility}
+        patient={patient}
       />
     </Stack>
   );

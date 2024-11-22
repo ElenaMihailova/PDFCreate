@@ -36,10 +36,22 @@ const responsibilitySlice = createSlice({
       state.middleName = "";
       state.date = new Date().toISOString().split("T")[0];
     },
+    setResponsibilityData(state, action: PayloadAction<ResponsibilityState>) {
+      state.lastName = action.payload.lastName;
+      state.firstName = action.payload.firstName;
+      state.middleName = action.payload.middleName;
+      state.date = action.payload.date;
+    },
   },
 });
 
-export const { setLastName, setFirstName, setMiddleName, setDate, resetForm } =
-  responsibilitySlice.actions;
+export const {
+  setLastName,
+  setFirstName,
+  setMiddleName,
+  setDate,
+  resetForm,
+  setResponsibilityData,
+} = responsibilitySlice.actions;
 
 export const responsibilityReducer = responsibilitySlice.reducer;

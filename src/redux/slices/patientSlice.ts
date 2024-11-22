@@ -57,6 +57,16 @@ const patientSlice = createSlice({
       state.documentIssueDate = "";
       state.documentCode = "21";
     },
+    setPatientData(state, action: PayloadAction<PatientState>) {
+      state.lastName = action.payload.lastName;
+      state.firstName = action.payload.firstName;
+      state.middleName = action.payload.middleName;
+      state.taxpayerId = action.payload.taxpayerId;
+      state.birthDate = action.payload.birthDate;
+      state.documentCode = action.payload.documentCode;
+      state.documentNumber = action.payload.documentNumber;
+      state.documentIssueDate = action.payload.documentIssueDate;
+    },
   },
 });
 
@@ -69,6 +79,7 @@ export const {
   setDocumentNumber,
   setDocumentIssueDate,
   resetForm,
+  setPatientData,
 } = patientSlice.actions;
 
 export const patientReducer = patientSlice.reducer;

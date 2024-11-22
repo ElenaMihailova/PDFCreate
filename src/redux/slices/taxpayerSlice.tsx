@@ -6,7 +6,7 @@ interface TaxpayerState {
   middleName: string;
   taxpayerId: string;
   birthDate: string;
-  documentCode: string;
+  documentCode?: string;
   documentNumber: string;
   documentIssueDate: string;
 }
@@ -57,6 +57,16 @@ const taxpayerSlice = createSlice({
       state.documentIssueDate = "";
       state.documentCode = "21";
     },
+    setTaxpayerData(state, action: PayloadAction<TaxpayerState>) {
+      state.lastName = action.payload.lastName;
+      state.firstName = action.payload.firstName;
+      state.middleName = action.payload.middleName;
+      state.taxpayerId = action.payload.taxpayerId;
+      state.birthDate = action.payload.birthDate;
+      state.documentCode = action.payload.documentCode;
+      state.documentNumber = action.payload.documentNumber;
+      state.documentIssueDate = action.payload.documentIssueDate;
+    },
   },
 });
 
@@ -69,6 +79,7 @@ export const {
   setDocumentNumber,
   setDocumentIssueDate,
   resetForm,
+  setTaxpayerData,
 } = taxpayerSlice.actions;
 
 export const taxpayerReducer = taxpayerSlice.reducer;
