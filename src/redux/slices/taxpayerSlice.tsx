@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface PatientState {
+interface TaxpayerState {
   lastName: string;
   firstName: string;
   middleName: string;
@@ -11,7 +11,7 @@ interface PatientState {
   documentIssueDate: string;
 }
 
-const initialState: PatientState = {
+const initialState: TaxpayerState = {
   lastName: "",
   firstName: "",
   middleName: "",
@@ -22,8 +22,8 @@ const initialState: PatientState = {
   documentIssueDate: "",
 };
 
-const patientSlice = createSlice({
-  name: "patient",
+const taxpayerSlice = createSlice({
+  name: "taxpayer",
   initialState,
   reducers: {
     setLastName(state, action: PayloadAction<string>) {
@@ -69,6 +69,6 @@ export const {
   setDocumentNumber,
   setDocumentIssueDate,
   resetForm,
-} = patientSlice.actions;
+} = taxpayerSlice.actions;
 
-export const patientReducer = patientSlice.reducer;
+export const taxpayerReducer = taxpayerSlice.reducer;

@@ -1,22 +1,31 @@
 import createCertificate from "./generateReport.js";
 
 interface ConstructorProps {
-  orgData: string; // Название организации
-  inn: string;     // ИНН
-  kpp: string;     // КПП
+  orgData: string;
+  inn: string;
+  kpp: string;
+  year: number;
+  reportNumber: string;
+  reportCorNumber: string;
 }
 
-const Constructor: React.FC<ConstructorProps> = ({ orgData, inn, kpp }) => {
+const Constructor: React.FC<ConstructorProps> = ({
+  orgData,
+  inn,
+  kpp,
+  year,
+  reportNumber,
+  reportCorNumber,
+}) => {
+  const formattedYear = year.toString().split("").join("  ");
+
   const handleCreatePdf = () => {
     const data = {
-      Correction_num: "1  2  3",
-      Blank_num: "4  5  6",
-      // Org_data: "О  О О  Б  Ь Ю Т И    Э  С  Т  Е  Т И К",
-      // INN: "7  8  1  4  6  9  6  6  1  5",
-      // KPP: "7  8  4  2  0  1  0  0  1",
+      Blank_num: reportNumber.split("").join("  "),
+      Correction_num: reportCorNumber.split("").join("  "),
       Org_data: orgData.split("").join("  "),
       INN: inn.split("").join("  "),
-      KPP: kpp.split("").join("  "),   
+      KPP: kpp.split("").join("  "),
 
       Patient_last_name: "И  в  а  н  о  в",
       Patient_first_name: "И  в  а  н",
@@ -26,7 +35,7 @@ const Constructor: React.FC<ConstructorProps> = ({ orgData, inn, kpp }) => {
       Payer_last_name: "С  и  д  о  р  о  в",
       Payer_first_name: "П  е  т  р",
       Payer_middle_name: "П  е  т  р  о  в  и  ч",
-      Payer_DD: "1  5", 
+      Payer_DD: "1  5",
       Payer_MM: "1  0",
       Payer_YYYY: "2  0  2  4",
       Patient_DD: "2  0",
@@ -45,7 +54,7 @@ const Constructor: React.FC<ConstructorProps> = ({ orgData, inn, kpp }) => {
       Spec_code_1: "1  0  0  0",
       Spec_code_2: "2  0  0  0",
       Sign_date: "2  0  .  1  1  .  2  0  2  4",
-      Report_year: "2  0  2  4",
+      Report_year: formattedYear,
     };
 
     createCertificate(data);

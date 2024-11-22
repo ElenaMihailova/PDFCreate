@@ -33,5 +33,20 @@ export const CertificateForm = () => {
         KPP: "Не указано",
       };
 
-  return <CertificateFormView data={data} />;
+  const year = useSelector((state: RootState) => state.report.year);
+  const reportNumber = useSelector(
+    (state: RootState) => state.report.reportNumber
+  );
+  const reportCorNumber = useSelector(
+    (state: RootState) => state.report.reportCorNumber
+  );
+
+  return (
+    <CertificateFormView
+      data={data}
+      year={year}
+      reportNumber={reportNumber}
+      reportCorNumber={reportCorNumber}
+    />
+  );
 };

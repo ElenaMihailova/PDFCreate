@@ -16,17 +16,28 @@ interface FormFillingViewProps {
   };
   indicatorValue: string;
   setIndicatorValue: (value: string) => void;
+  currentYear: number; 
+  selectedYear: number;
+  onYearChange: (year: number) => void; 
 }
 
 export const FormFillingView: React.FC<FormFillingViewProps> = ({
   organizationData,
   indicatorValue,
   setIndicatorValue,
+  currentYear,
+  selectedYear,
+  onYearChange,
 }) => {
   return (
     <Stack>
       <CountBlock />
-      <YearBlock />
+      <YearBlock
+        currentYear={currentYear}
+        selectedYear={selectedYear}
+        onYearChange={onYearChange}
+      />
+
       <OrganizationForm organizationData={organizationData} />
       <ResponsibilityForm />
       <TaxpayerForm />

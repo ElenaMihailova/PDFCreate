@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Typography,
@@ -6,15 +6,23 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  SelectChangeEvent,
 } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 
-export const YearBlock: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
+interface YearBlockProps {
+  currentYear: number;
+  selectedYear: number;
+  onYearChange: (year: number) => void;
+}
 
-  const handleYearChange = (event: SelectChangeEvent<number>) => {
-    setSelectedYear(Number(event.target.value));
+export const YearBlock: React.FC<YearBlockProps> = ({
+  currentYear,
+  selectedYear,
+  onYearChange,
+}) => {
+  const handleYearChange = (event: SelectChangeEvent<string>) => {
+    const year = Number(event.target.value);
+    onYearChange(year);
   };
 
   return (
@@ -26,14 +34,14 @@ export const YearBlock: React.FC = () => {
         <InputLabel id="year-select-label">Отчетный год</InputLabel>
         <Select
           labelId="year-select-label"
-          value={selectedYear}
+          value={String(selectedYear)}
           onChange={handleYearChange}
           label="Отчетный год"
         >
           {[...Array(4)].map((_, index) => {
             const year = currentYear - index;
             return (
-              <MenuItem key={year} value={year}>
+              <MenuItem key={year} value={String(year)}>
                 {year}
               </MenuItem>
             );

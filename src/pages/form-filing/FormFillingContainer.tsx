@@ -2,9 +2,14 @@ import { FormFillingView } from "./FormFillingView";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import medicalOrganizations from "../../data/medical-organizations";
+import { setYear } from "../../redux/slices/reportSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const FormFillingPage = () => {
   const [cookies] = useCookies(["clinicId"]);
+  const dispatch = useDispatch();
+  const currentYear = new Date().getFullYear();
+
   const [organizationData, setOrganizationData] = useState({
     inn: "",
     kpp: "",
@@ -12,6 +17,10 @@ export const FormFillingPage = () => {
   });
 
   const [indicatorValue, setIndicatorValue] = useState<string>("1");
+
+  const [selectedYear, setSelectedYear] = useState<number>(
+    new Date().getFullYear()
+  );
 
   useEffect(() => {
     const clinicId = String(cookies.clinicId);
@@ -36,11 +45,19 @@ export const FormFillingPage = () => {
     }
   }, [cookies.clinicId]);
 
+  const handleYearChange = (year: number) => {
+    dispatch(setYear(year));
+    setSelectedYear(year);
+  };
+
   return (
     <FormFillingView
       organizationData={organizationData}
       indicatorValue={indicatorValue}
       setIndicatorValue={setIndicatorValue}
+      currentYear={currentYear}
+      selectedYear={selectedYear}
+      onYearChange={handleYearChange}
     />
   );
 };

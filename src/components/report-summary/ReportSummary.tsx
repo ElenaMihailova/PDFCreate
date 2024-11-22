@@ -7,13 +7,24 @@ interface ReportSummaryProps {
     INN: string;
     KPP: string;
   };
+  year: number;
+  reportNumber: string;
+  reportCorNumber: string;
 }
 
-export const ReportSummary: React.FC<ReportSummaryProps> = ({ data }) => {
+export const ReportSummary: React.FC<ReportSummaryProps> = ({
+  data,
+  year,
+  reportNumber,
+  reportCorNumber,
+}) => {
   const fields = [
     { label: "Название клиники", value: data.clinicName },
     { label: "ИНН", value: data.INN },
     { label: "КПП", value: data.KPP },
+    { label: "Отчетный год", value: year.toString() },
+    { label: "Номер справки", value: reportNumber.toString() },
+    { label: "Номер корректировки", value: reportCorNumber.toString() },
   ];
 
   return (
