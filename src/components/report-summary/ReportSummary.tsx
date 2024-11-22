@@ -35,6 +35,10 @@ interface ReportSummaryProps {
     documentNumber?: string;
     documentIssueDate?: string;
   };
+  financialInfo: {
+    serviceCode1Expense: number;
+    serviceCode2Expense: number;
+  };
 }
 
 export const ReportSummary: React.FC<ReportSummaryProps> = ({
@@ -45,6 +49,7 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
   responsibility,
   taxpayer,
   patient,
+  financialInfo = { serviceCode1Expense: 0, serviceCode2Expense: 0 },
 }) => {
   const fields = [
     { label: "Название клиники", value: data.clinicName },
@@ -88,6 +93,14 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
     {
       label: "Пациент: Дата выдачи документа",
       value: patient.documentIssueDate || "Не указано",
+    },
+    {
+      label: "Сумма расходов на медицинские услуги (код услуги «1»)",
+      value: financialInfo.serviceCode1Expense.toLocaleString("ru-RU"),
+    },
+    {
+      label: "Сумма расходов на медицинские услуги (код услуги «2»)",
+      value: financialInfo.serviceCode2Expense.toLocaleString("ru-RU"),
     },
   ];
 

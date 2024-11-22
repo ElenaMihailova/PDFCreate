@@ -4,6 +4,7 @@ import { reportReducer } from "./slices/reportSlice";
 import { responsibilityReducer } from "./slices/responsibilitySlice";
 import { taxpayerReducer } from "./slices/taxpayerSlice";
 import { patientReducer } from "./slices/patientSlice";
+import { financialInfoReducer } from "./slices/financialInfoSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     responsibility: responsibilityReducer,
     taxpayer: taxpayerReducer,
     patient: patientReducer,
+    financial: financialInfoReducer,
   },
 });
 

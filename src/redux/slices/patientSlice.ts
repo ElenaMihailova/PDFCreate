@@ -4,7 +4,7 @@ interface PatientState {
   lastName: string;
   firstName: string;
   middleName: string;
-  taxpayerId: string;
+  patientId?: string;
   birthDate: string;
   documentCode: string;
   documentNumber: string;
@@ -15,7 +15,7 @@ const initialState: PatientState = {
   lastName: "",
   firstName: "",
   middleName: "",
-  taxpayerId: "",
+  patientId: "",
   birthDate: "",
   documentCode: "21",
   documentNumber: "",
@@ -36,7 +36,7 @@ const patientSlice = createSlice({
       state.middleName = action.payload;
     },
     setTaxpayerId(state, action: PayloadAction<string>) {
-      state.taxpayerId = action.payload;
+      state.patientId = action.payload;
     },
     setBirthDate(state, action: PayloadAction<string>) {
       state.birthDate = action.payload;
@@ -51,7 +51,7 @@ const patientSlice = createSlice({
       state.lastName = "";
       state.firstName = "";
       state.middleName = "";
-      state.taxpayerId = "";
+      state.patientId = "";
       state.birthDate = "";
       state.documentNumber = "";
       state.documentIssueDate = "";
@@ -61,7 +61,7 @@ const patientSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.firstName = action.payload.firstName;
       state.middleName = action.payload.middleName;
-      state.taxpayerId = action.payload.taxpayerId;
+      state.patientId = action.payload.patientId;
       state.birthDate = action.payload.birthDate;
       state.documentCode = action.payload.documentCode;
       state.documentNumber = action.payload.documentNumber;

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import medicalOrganizations from "../../data/medical-organizations";
 import { setYear } from "../../redux/slices/reportSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const FormFillingPage = () => {
   const [cookies] = useCookies(["clinicId"]);

@@ -21,8 +21,8 @@ interface CertificateFormViewProps {
     lastName: string;
     firstName: string;
     middleName: string;
-    taxpayerId?: string;
-    birthDate?: string;
+    taxpayerId: string;
+    birthDate: string;
     documentNumber?: string;
     documentIssueDate?: string;
   };
@@ -36,6 +36,10 @@ interface CertificateFormViewProps {
     documentNumber: string;
     documentIssueDate: string;
   };
+  financialInfo: {
+    serviceCode1Expense: number;
+    serviceCode2Expense: number;
+  };
 }
 
 export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
@@ -46,9 +50,8 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
   responsibility,
   taxpayer,
   patient,
+  financialInfo,
 }) => {
-
-  console.log(taxpayer)
   return (
     <Stack>
       <ReportSummary
@@ -59,6 +62,7 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
         responsibility={responsibility}
         taxpayer={taxpayer}
         patient={patient}
+        financialInfo={financialInfo}
       />
       <Constructor
         orgData={data.clinicName}
