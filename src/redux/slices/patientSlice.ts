@@ -4,7 +4,7 @@ interface PatientState {
   lastName: string;
   firstName: string;
   middleName: string;
-  patientId?: string;
+  patientId: string;
   birthDate: string;
   documentCode: string;
   documentNumber: string;

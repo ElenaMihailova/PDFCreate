@@ -21,7 +21,7 @@ interface CertificateFormViewProps {
     lastName: string;
     firstName: string;
     middleName: string;
-    taxpayerId: string;
+    patientId: string;
     birthDate: string;
     documentNumber?: string;
     documentIssueDate?: string;

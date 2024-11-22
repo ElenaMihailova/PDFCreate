@@ -84,7 +84,7 @@ const PatientForm: React.FC = () => {
           label="ИНН пациента (если есть)"
           variant="outlined"
           fullWidth
-          value={patient.taxpayerId}
+          value={patient.patientId}
           onChange={(e) => handleInputChange("taxpayerId", e.target.value)}
         />
       </Box>

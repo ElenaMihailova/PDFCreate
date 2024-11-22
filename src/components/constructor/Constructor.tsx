@@ -28,7 +28,7 @@ interface ConstructorProps {
     firstName: string;
     middleName: string;
     patientId: string;
-    birthDate?: string;
+    birthDate: string;
     documentNumber: string;
     documentIssueDate?: string;
   };
