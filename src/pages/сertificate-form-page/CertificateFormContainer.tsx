@@ -14,7 +14,6 @@ import { setTaxpayerData } from "../../redux/slices/taxpayerSlice";
 import { setPatientData } from "../../redux/slices/patientSlice";
 import { setFinancialInfo } from "../../redux/slices/financialInfoSlice";
 
-
 export const CertificateForm = () => {
   const dispatch = useDispatch();
 
@@ -35,9 +34,7 @@ export const CertificateForm = () => {
   const taxpayer = useSelector((state: RootState) => state.taxpayer);
   const patient = useSelector((state: RootState) => state.patient);
 
-  const financialInfo = useSelector(
-    (state: RootState) => state.financialInfo
-  );
+  const financialInfo = useSelector((state: RootState) => state.financial);
 
   const data = organization
     ? {
@@ -91,7 +88,7 @@ export const CertificateForm = () => {
     }
     if (financialInfo) {
       console.log("Restoring financialInfo:", financialInfo);
-      dispatch(setFinancialInfo(JSON.parse(financialInfo)));
+      dispatch(setFinancialInfo(financialInfo));
     }
   }, [dispatch]);
 

@@ -29,7 +29,7 @@ interface ConstructorProps {
     middleName: string;
     patientId: string;
     birthDate: string;
-    documentNumber: string;
+    documentNumber?: string;
     documentIssueDate?: string;
   };
 }
@@ -62,8 +62,8 @@ const Constructor: React.FC<ConstructorProps> = ({
   const birthDate = formatDate(taxpayer.birthDate);
   const taxpayerDocIssueDate = formatDate(taxpayer?.documentIssueDate);
   const signDate = formatDate(responsibility.date);
-  const patientBirthDate = formatDate(patient.birthDate)
-  const patientDocIssueDate = formatDate(patient.documentIssueDate)
+  const patientBirthDate = formatDate(patient.birthDate);
+  const patientDocIssueDate = formatDate(patient.documentIssueDate);
 
   const handleCreatePdf = () => {
     const data = {
@@ -109,7 +109,9 @@ const Constructor: React.FC<ConstructorProps> = ({
       Patient_doc_DD: patientDocIssueDate.DD,
       Patient_doc_MM: patientDocIssueDate.MM,
       Patient_doc_YYYY: patientDocIssueDate.YYYY,
-      Patient_doc_serial_num: patient.documentNumber.split("").join("  "),
+      Patient_doc_serial_num: patient.documentNumber
+        ? patient.documentNumber.split("").join("  ")
+        : " ",
       Report_year: formattedYear,
 
       Amount_code_2: "5",
