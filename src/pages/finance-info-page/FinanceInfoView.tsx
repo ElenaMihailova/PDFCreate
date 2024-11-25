@@ -1,5 +1,4 @@
 import FinancialInfoForm from "../../components/financial-info-form/FinancialInfoForm";
-import { SummaryTable } from "../../components/summary-table/SummaryTable";
 import { Stack, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +11,6 @@ export const FinanceInfoView = () => {
 
   return (
     <Stack>
-      <SummaryTable />
       <FinancialInfoForm />
       <Button
         variant="contained"

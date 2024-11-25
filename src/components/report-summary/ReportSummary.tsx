@@ -1,45 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-
-interface ReportSummaryProps {
-  data: {
-    clinicName: string;
-    INN: string;
-    KPP: string;
-  };
-  year: number;
-  reportNumber: string;
-  reportCorNumber: string;
-  responsibility: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    date: string;
-  };
-  taxpayer: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    taxpayerId?: string;
-    birthDate: string;
-    documentCode?: string;
-    documentNumber: string;
-    documentIssueDate: string;
-  };
-  patient: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    taxpayerId?: string;
-    birthDate?: string;
-    documentNumber?: string;
-    documentIssueDate?: string;
-  };
-  financialInfo: {
-    serviceCode1Expense: number;
-    serviceCode2Expense: number;
-  };
-}
+import { ReportSummaryProps } from "../../types";
 
 export const ReportSummary: React.FC<ReportSummaryProps> = ({
   data,
@@ -50,6 +11,7 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
   taxpayer,
   patient,
   financialInfo = { serviceCode1Expense: 0, serviceCode2Expense: 0 },
+  indicatorValue,
 }) => {
   const fields = [
     { label: "Название клиники", value: data.clinicName },
@@ -78,22 +40,26 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
       label: "Налогоплательщик: Дата выдачи",
       value: taxpayer.documentIssueDate,
     },
-    { label: "Пациент: Фамилия", value: patient.lastName },
-    { label: "Пациент: Имя", value: patient.firstName },
-    { label: "Пациент: Отчество", value: patient.middleName },
-    { label: "Пациент: ИНН", value: patient.taxpayerId || "Не указано" },
-    {
-      label: "Пациент: Дата рождения",
-      value: patient.birthDate || "Не указано",
-    },
-    {
-      label: "Пациент: Серия и номер документа",
-      value: patient.documentNumber || "Не указано",
-    },
-    {
-      label: "Пациент: Дата выдачи документа",
-      value: patient.documentIssueDate || "Не указано",
-    },
+    ...(indicatorValue === "1"
+      ? []
+      : [
+          { label: "Пациент: Фамилия", value: patient.lastName },
+          { label: "Пациент: Имя", value: patient.firstName },
+          { label: "Пациент: Отчество", value: patient.middleName },
+          { label: "Пациент: ИНН", value: patient.taxpayerId || "Не указано" },
+          {
+            label: "Пациент: Дата рождения",
+            value: patient.birthDate || "Не указано",
+          },
+          {
+            label: "Пациент: Серия и номер документа",
+            value: patient.documentNumber || "Не указано",
+          },
+          {
+            label: "Пациент: Дата выдачи документа",
+            value: patient.documentIssueDate || "Не указано",
+          },
+        ]),
     {
       label: "Сумма расходов на медицинские услуги (код услуги «1»)",
       value: financialInfo.serviceCode1Expense.toLocaleString("ru-RU"),

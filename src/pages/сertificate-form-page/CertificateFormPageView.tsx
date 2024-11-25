@@ -1,46 +1,8 @@
 import { Stack } from "@mui/material";
 import Constructor from "../../components/constructor/Constructor";
 import { ReportSummary } from "../../components/report-summary/ReportSummary";
+import { CertificateFormViewProps } from "../../types";
 
-interface CertificateFormViewProps {
-  data: {
-    clinicName: string;
-    INN: string;
-    KPP: string;
-  };
-  year: number;
-  reportNumber: string;
-  reportCorNumber: string;
-  responsibility: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    date: string;
-  };
-  patient: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    patientId: string;
-    birthDate: string;
-    documentNumber?: string;
-    documentIssueDate?: string;
-  };
-  taxpayer: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    taxpayerId: string;
-    birthDate: string;
-    documentCode?: string;
-    documentNumber: string;
-    documentIssueDate: string;
-  };
-  financialInfo: {
-    serviceCode1Expense: number;
-    serviceCode2Expense: number;
-  };
-}
 
 export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
   data,
@@ -51,6 +13,7 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
   taxpayer,
   patient,
   financialInfo,
+  indicatorValue,
 }) => {
   return (
     <Stack>
@@ -63,6 +26,7 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
         taxpayer={taxpayer}
         patient={patient}
         financialInfo={financialInfo}
+        indicatorValue={indicatorValue}
       />
       <Constructor
         orgData={data.clinicName}
@@ -74,6 +38,8 @@ export const CertificateFormView: React.FC<CertificateFormViewProps> = ({
         taxpayer={taxpayer}
         responsibility={responsibility}
         patient={patient}
+        indicatorValue={indicatorValue}
+        financialInfo={financialInfo} 
       />
     </Stack>
   );

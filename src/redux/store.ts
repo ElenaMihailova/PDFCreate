@@ -5,6 +5,7 @@ import { responsibilityReducer } from "./slices/responsibilitySlice";
 import { taxpayerReducer } from "./slices/taxpayerSlice";
 import { patientReducer } from "./slices/patientSlice";
 import { financialInfoReducer } from "./slices/financialInfoSlice";
+import { indicatorReducer } from "./slices/indicatorSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     taxpayer: taxpayerReducer,
     patient: patientReducer,
     financial: financialInfoReducer,
+    indicator: indicatorReducer,
   },
 });
 

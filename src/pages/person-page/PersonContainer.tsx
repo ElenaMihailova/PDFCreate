@@ -1,13 +1,21 @@
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
+import { setIndicatorValue } from "../../redux/slices/indicatorSlice";
 import { PersonView } from "./PersonView";
-import { useState } from "react";
 
-export const PersonPage = () => {
-  const [indicatorValue, setIndicatorValue] = useState<string>("1");
+export const PersonPage: React.FC = () => {
+  const dispatch = useDispatch();
+  const indicatorValue = useSelector((state: RootState) => state.indicator.value);
+
+  const handleChange = (value: string) => {
+    dispatch(setIndicatorValue(value));
+  };
 
   return (
     <PersonView
       indicatorValue={indicatorValue}
-      setIndicatorValue={setIndicatorValue}
+      setIndicatorValue={handleChange}
     />
   );
 };

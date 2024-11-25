@@ -1,38 +1,5 @@
 import createCertificate from "./generateReport.js";
-
-interface ConstructorProps {
-  orgData: string;
-  inn: string;
-  kpp: string;
-  year: number;
-  reportNumber: string;
-  reportCorNumber: string;
-  responsibility: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    date: string;
-  };
-  taxpayer: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    taxpayerId: string;
-    birthDate: string;
-    documentCode?: string;
-    documentNumber: string;
-    documentIssueDate: string;
-  };
-  patient: {
-    lastName: string;
-    firstName: string;
-    middleName: string;
-    patientId: string;
-    birthDate: string;
-    documentNumber?: string;
-    documentIssueDate?: string;
-  };
-}
+import { ConstructorProps } from "../../types.js";
 
 const Constructor: React.FC<ConstructorProps> = ({
   orgData,
@@ -44,6 +11,8 @@ const Constructor: React.FC<ConstructorProps> = ({
   responsibility,
   taxpayer,
   patient,
+  indicatorValue,
+  financialInfo,
 }) => {
   const formattedYear = year.toString().split("").join("  ");
 
@@ -66,6 +35,8 @@ const Constructor: React.FC<ConstructorProps> = ({
   const patientDocIssueDate = formatDate(patient.documentIssueDate);
 
   const handleCreatePdf = () => {
+    const isTaxpayerAndPatientSame = indicatorValue === "1";
+
     const data = {
       Blank_num: reportNumber.split("").join("  "),
       Correction_num: reportCorNumber.split("").join("  "),
@@ -99,7 +70,9 @@ const Constructor: React.FC<ConstructorProps> = ({
       Patient_last_name: patient.lastName.split("").join("  "),
       Patient_first_name: patient.firstName.split("").join("  "),
       Patient_middle_name: patient.middleName.split("").join("  "),
-      Patient_INN: patient.patientId.split("").join("  "),
+      Patient_INN: patient.patientId
+      ? patient.patientId.split("").join("  ")
+      : " ",
 
       Patient_DD: patientBirthDate.DD,
       Patient_MM: patientBirthDate.MM,
@@ -114,11 +87,20 @@ const Constructor: React.FC<ConstructorProps> = ({
         : " ",
       Report_year: formattedYear,
 
-      Amount_code_2: "5",
-      Amount_code_1: "6",
+      Amount_code_1: financialInfo.serviceCode1Expense
+        .toString()
+        .split("")
+        .join("  "),
+      Amount_code_2: financialInfo.serviceCode2Expense
+        .toString()
+        .split("")
+        .join("  "),
 
-      Spec_code_1: "1",
-      Spec_code_2: "2",
+      Spec_code_1: "0  0",
+      Spec_code_2: "0  0",
+
+      Bul: isTaxpayerAndPatientSame ? "1" : "0",
+      Pages: isTaxpayerAndPatientSame ? "0  0  1" : "0  0  2",
     };
 
     createCertificate(data);

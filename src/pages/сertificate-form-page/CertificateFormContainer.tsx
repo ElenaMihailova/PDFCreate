@@ -33,7 +33,6 @@ export const CertificateForm = () => {
   );
   const taxpayer = useSelector((state: RootState) => state.taxpayer);
   const patient = useSelector((state: RootState) => state.patient);
-
   const financialInfo = useSelector((state: RootState) => state.financial);
 
   const data = organization
@@ -48,8 +47,11 @@ export const CertificateForm = () => {
         KPP: "Не указано",
       };
 
+  const indicatorValue = useSelector(
+    (state: RootState) => state.indicator.value
+  );
+
   useEffect(() => {
-    console.log("Restoring data from localStorage");
     const savedClinicId = localStorage.getItem("clinicId");
     const savedYear = localStorage.getItem("year");
     const savedReportNumber = localStorage.getItem("reportNumber");
@@ -57,58 +59,29 @@ export const CertificateForm = () => {
     const savedResponsibility = localStorage.getItem("responsibility");
     const savedTaxpayer = localStorage.getItem("taxpayer");
     const savedPatient = localStorage.getItem("patient");
+    const savedFinancialInfo = localStorage.getItem("financialInfo");
 
-    if (savedClinicId) {
-      console.log("Restoring clinicId:", savedClinicId);
-      dispatch(setClinicId(savedClinicId));
-    }
-    if (savedYear) {
-      console.log("Restoring year:", savedYear);
-      dispatch(setYear(Number(savedYear)));
-    }
-    if (savedReportNumber) {
-      console.log("Restoring reportNumber:", savedReportNumber);
-      dispatch(setReportNumber(savedReportNumber));
-    }
-    if (savedReportCorNumber) {
-      console.log("Restoring reportCorNumber:", savedReportCorNumber);
-      dispatch(setCorNumber(savedReportCorNumber));
-    }
-    if (savedResponsibility) {
-      console.log("Restoring responsibility:", savedResponsibility);
+    if (savedClinicId) dispatch(setClinicId(savedClinicId));
+    if (savedYear) dispatch(setYear(Number(savedYear)));
+    if (savedReportNumber) dispatch(setReportNumber(savedReportNumber));
+    if (savedReportCorNumber) dispatch(setCorNumber(savedReportCorNumber));
+    if (savedResponsibility)
       dispatch(setResponsibilityData(JSON.parse(savedResponsibility)));
-    }
-    if (savedTaxpayer) {
-      console.log("Restoring taxpayer:", savedTaxpayer);
-      dispatch(setTaxpayerData(JSON.parse(savedTaxpayer)));
-    }
-    if (savedPatient) {
-      console.log("Restoring patient:", savedPatient);
-      dispatch(setPatientData(JSON.parse(savedPatient)));
-    }
-    if (financialInfo) {
-      console.log("Restoring financialInfo:", financialInfo);
-      dispatch(setFinancialInfo(financialInfo));
-    }
+    if (savedTaxpayer) dispatch(setTaxpayerData(JSON.parse(savedTaxpayer)));
+    if (savedPatient) dispatch(setPatientData(JSON.parse(savedPatient)));
+    if (savedFinancialInfo)
+      dispatch(setFinancialInfo(JSON.parse(savedFinancialInfo)));
   }, [dispatch]);
 
   useEffect(() => {
-    try {
-      console.log("Saving data to localStorage");
-      console.log("Responsibility data being saved:", responsibility);
-      console.log("Taxpayer data being saved:", taxpayer);
-      console.log("Patient data being saved:", patient);
-
-      localStorage.setItem("clinicId", clinicId || "");
-      localStorage.setItem("year", year.toString());
-      localStorage.setItem("reportNumber", reportNumber || "");
-      localStorage.setItem("reportCorNumber", reportCorNumber || "");
-      localStorage.setItem("responsibility", JSON.stringify(responsibility));
-      localStorage.setItem("taxpayer", JSON.stringify(taxpayer));
-      localStorage.setItem("patient", JSON.stringify(patient));
-    } catch (error) {
-      console.error("Error saving to localStorage:", error);
-    }
+    localStorage.setItem("clinicId", clinicId || "");
+    localStorage.setItem("year", year.toString());
+    localStorage.setItem("reportNumber", reportNumber || "");
+    localStorage.setItem("reportCorNumber", reportCorNumber || "");
+    localStorage.setItem("responsibility", JSON.stringify(responsibility));
+    localStorage.setItem("taxpayer", JSON.stringify(taxpayer));
+    localStorage.setItem("patient", JSON.stringify(patient));
+    localStorage.setItem("financialInfo", JSON.stringify(financialInfo));
   }, [
     clinicId,
     year,
@@ -117,7 +90,12 @@ export const CertificateForm = () => {
     responsibility,
     taxpayer,
     patient,
+    financialInfo,
   ]);
+
+  useEffect(() => {
+    localStorage.setItem("indicatorValue", indicatorValue);
+  }, [indicatorValue]);
 
   return (
     <CertificateFormView
@@ -129,6 +107,7 @@ export const CertificateForm = () => {
       taxpayer={taxpayer}
       patient={patient}
       financialInfo={financialInfo}
+      indicatorValue={indicatorValue}
     />
   );
 };
