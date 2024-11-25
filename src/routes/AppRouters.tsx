@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import { HashRouter, Route, Navigate, Routes } from "react-router-dom";
 import { AuthPage } from "../pages/auth-page/AuthPageConatainer";
 import { FormFillingPage } from "../pages/form-filing/FormFillingContainer";
 import { ClinicsPage } from "../pages/clinics-page/ClinicsPageContainer";
@@ -7,7 +7,7 @@ import { CertificateForm } from "../pages/сertificate-form-page/CertificateForm
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/login" element={<AuthPage />} />
         <Route path="/clinics" element={<ClinicsPage />} />
@@ -16,7 +16,7 @@ const AppRouter = () => {
         <Route path="/certificate" element={<CertificateForm />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
