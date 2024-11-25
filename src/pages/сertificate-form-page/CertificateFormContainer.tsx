@@ -40,7 +40,6 @@ export const CertificateForm = () => {
     (state: RootState) => state.indicator.value
   );
 
-  // Данные о клинике
   const data = organization
     ? {
         clinicName: organization.name,
@@ -53,7 +52,6 @@ export const CertificateForm = () => {
         KPP: "Не указано",
       };
 
-  // Восстановление данных из localStorage при загрузке
   useEffect(() => {
     const savedClinicId = localStorage.getItem("clinicId");
     const savedYear = localStorage.getItem("year");
@@ -78,7 +76,6 @@ export const CertificateForm = () => {
     if (savedIndicatorValue) dispatch(setIndicatorValue(savedIndicatorValue));
   }, [dispatch]);
 
-  // Сохранение данных в localStorage при изменении
   useEffect(() => {
     localStorage.setItem("clinicId", clinicId || "");
     localStorage.setItem("year", year.toString());
