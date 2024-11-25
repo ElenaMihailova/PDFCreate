@@ -1,33 +1,28 @@
 import { Stack } from "@mui/material";
 import OrganizationForm from "../../components/organization-form/OrganizationForm";
 import CountBlock from "../../components/count-block/CountBlock";
-import TaxpayerForm from "../../components/taxpayer-form/TaxpayerForm";
-import PatientForm from "../../components/patient-form/PatientForm";
 import ResponsibilityForm from "../../components/responsibility-form/ResponsibilityForm";
 import { YearBlock } from "../../components/year-block/YearBlock";
-import { TaxpayerPatientIndicator } from "../../components/taxpayer-form/TaxpayerPatientIndicator";
-import { GoToFinancialInfoButton } from "../../components/Button";
+import { Button as MuiButton } from "@mui/material";
 
-interface FormFillingViewProps {
+interface OrganisationViewProps {
   organizationData: {
     inn: string;
     kpp: string;
     shortName: string;
   };
-  indicatorValue: string;
-  setIndicatorValue: (value: string) => void;
-  currentYear: number; 
+  currentYear: number;
   selectedYear: number;
-  onYearChange: (year: number) => void; 
+  onYearChange: (year: number) => void;
+  handleNextPage: () => void;
 }
 
-export const FormFillingView: React.FC<FormFillingViewProps> = ({
+export const OrganisationView: React.FC<OrganisationViewProps> = ({
   organizationData,
-  indicatorValue,
-  setIndicatorValue,
   currentYear,
   selectedYear,
   onYearChange,
+  handleNextPage,
 }) => {
   return (
     <Stack>
@@ -40,13 +35,9 @@ export const FormFillingView: React.FC<FormFillingViewProps> = ({
 
       <OrganizationForm organizationData={organizationData} />
       <ResponsibilityForm />
-      <TaxpayerForm />
-      <TaxpayerPatientIndicator
-        value={indicatorValue}
-        onChange={setIndicatorValue}
-      />
-      {indicatorValue === "0" && <PatientForm />}
-      <GoToFinancialInfoButton />
+      <MuiButton variant="contained" color="primary" onClick={handleNextPage}>
+        Заполнение информации о пациенте
+      </MuiButton>
     </Stack>
   );
 };

@@ -15,7 +15,7 @@ export const ClinicsPage = () => {
     setCookie("clinicId", id, { path: "/" });
     localStorage.setItem("clinicId", id);
     dispatch(setClinicId(id));
-    navigate(`/form`);
+    navigate(`/organisation`);
   };
 
   return (
