@@ -83,6 +83,7 @@ const TaxpayerForm: React.FC = () => {
           fullWidth
           value={taxpayer.taxpayerId}
           onChange={(e) => handleInputChange("taxpayerId", e.target.value)}
+          type="number"
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>

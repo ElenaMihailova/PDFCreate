@@ -13,10 +13,12 @@ import { setResponsibilityData } from "../../redux/slices/responsibilitySlice";
 import { setTaxpayerData } from "../../redux/slices/taxpayerSlice";
 import { setPatientData } from "../../redux/slices/patientSlice";
 import { setFinancialInfo } from "../../redux/slices/financialInfoSlice";
+import { setIndicatorValue } from "../../redux/slices/indicatorSlice";
 
 export const CertificateForm = () => {
   const dispatch = useDispatch();
 
+  // Данные из Redux
   const clinicId = useSelector((state: RootState) => state.company.clinicId);
   const organization = medicalOrganizations.find((org) =>
     org.clinicIds.includes(clinicId || "")
@@ -34,7 +36,11 @@ export const CertificateForm = () => {
   const taxpayer = useSelector((state: RootState) => state.taxpayer);
   const patient = useSelector((state: RootState) => state.patient);
   const financialInfo = useSelector((state: RootState) => state.financial);
+  const indicatorValue = useSelector(
+    (state: RootState) => state.indicator.value
+  );
 
+  // Данные о клинике
   const data = organization
     ? {
         clinicName: organization.name,
@@ -47,10 +53,7 @@ export const CertificateForm = () => {
         KPP: "Не указано",
       };
 
-  const indicatorValue = useSelector(
-    (state: RootState) => state.indicator.value
-  );
-
+  // Восстановление данных из localStorage при загрузке
   useEffect(() => {
     const savedClinicId = localStorage.getItem("clinicId");
     const savedYear = localStorage.getItem("year");
@@ -60,6 +63,7 @@ export const CertificateForm = () => {
     const savedTaxpayer = localStorage.getItem("taxpayer");
     const savedPatient = localStorage.getItem("patient");
     const savedFinancialInfo = localStorage.getItem("financialInfo");
+    const savedIndicatorValue = localStorage.getItem("indicatorValue");
 
     if (savedClinicId) dispatch(setClinicId(savedClinicId));
     if (savedYear) dispatch(setYear(Number(savedYear)));
@@ -71,8 +75,10 @@ export const CertificateForm = () => {
     if (savedPatient) dispatch(setPatientData(JSON.parse(savedPatient)));
     if (savedFinancialInfo)
       dispatch(setFinancialInfo(JSON.parse(savedFinancialInfo)));
+    if (savedIndicatorValue) dispatch(setIndicatorValue(savedIndicatorValue));
   }, [dispatch]);
 
+  // Сохранение данных в localStorage при изменении
   useEffect(() => {
     localStorage.setItem("clinicId", clinicId || "");
     localStorage.setItem("year", year.toString());
@@ -82,6 +88,7 @@ export const CertificateForm = () => {
     localStorage.setItem("taxpayer", JSON.stringify(taxpayer));
     localStorage.setItem("patient", JSON.stringify(patient));
     localStorage.setItem("financialInfo", JSON.stringify(financialInfo));
+    localStorage.setItem("indicatorValue", indicatorValue);
   }, [
     clinicId,
     year,
@@ -91,11 +98,8 @@ export const CertificateForm = () => {
     taxpayer,
     patient,
     financialInfo,
+    indicatorValue,
   ]);
-
-  useEffect(() => {
-    localStorage.setItem("indicatorValue", indicatorValue);
-  }, [indicatorValue]);
 
   return (
     <CertificateFormView

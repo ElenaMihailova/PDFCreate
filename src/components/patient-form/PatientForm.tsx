@@ -86,6 +86,7 @@ const PatientForm: React.FC = () => {
           fullWidth
           value={patient.patientId}
           onChange={(e) => handleInputChange("taxpayerId", e.target.value)}
+          type="number"
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
@@ -100,7 +101,7 @@ const PatientForm: React.FC = () => {
         />
       </Box>
 
-      <Box sx={{ marginBottom: 2 }}>
+      <Box sx={{ marginBottom: 2, textAlign: "left" }}>
         <Typography variant="body1">
           <strong>Код вида документа:</strong> 21 Паспорт гражданина Российской
           Федерации
