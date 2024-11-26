@@ -5,21 +5,24 @@ import { ClinicsPage } from "../pages/clinics-page/ClinicsPageContainer";
 import { FinanceInfo } from "../pages/finance-info-page/FinanceInfoContainer";
 import { CertificateForm } from "../pages/сertificate-form-page/CertificateFormContainer";
 import { OrganisationPage } from "../pages/organisation-page/OrganisationContainer";
+import { AppWrapper } from "../components/app-wrapper/AppWrapper";
 
 const AppRouter = () => {
   return (
     <HashRouter>
-      <Routes>
-        <Route path="/login" element={<AuthPage />} />
-        <Route path="/clinics" element={<ClinicsPage />} />
-        <Route path="/organisation" element={<OrganisationPage />} />
-        <Route path="/person" element={<PersonPage />} />
-        <Route path="/finance" element={<FinanceInfo />} />
-        <Route path="/certificate" element={<CertificateForm />} />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
+      <AppWrapper>
+        <Routes>
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/clinics" element={<ClinicsPage />} />
+          <Route path="/organisation" element={<OrganisationPage />} />
+          <Route path="/person" element={<PersonPage />} />
+          <Route path="/finance" element={<FinanceInfo />} />
+          <Route path="/certificate" element={<CertificateForm />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </AppWrapper>
     </HashRouter>
   );
 };
-
+ 
 export default AppRouter;

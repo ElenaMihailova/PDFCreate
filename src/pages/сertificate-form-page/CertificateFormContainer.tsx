@@ -18,7 +18,6 @@ import { setIndicatorValue } from "../../redux/slices/indicatorSlice";
 export const CertificateForm = () => {
   const dispatch = useDispatch();
 
-  // Данные из Redux
   const clinicId = useSelector((state: RootState) => state.company.clinicId);
   const organization = medicalOrganizations.find((org) =>
     org.clinicIds.includes(clinicId || "")
