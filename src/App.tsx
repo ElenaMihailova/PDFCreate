@@ -1,6 +1,6 @@
 import "./App.css";
 import { ThemeProvider } from "@mui/material";
-import theme from "./theme";
+import { theme } from "./theme";
 import AppRouter from "./routes/AppRouters";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";

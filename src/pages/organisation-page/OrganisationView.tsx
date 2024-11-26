@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import OrganizationForm from "../../components/organization-form/OrganizationForm";
 import CountBlock from "../../components/count-block/CountBlock";
 import ResponsibilityForm from "../../components/responsibility-form/ResponsibilityForm";
@@ -25,19 +25,27 @@ export const OrganisationView: React.FC<OrganisationViewProps> = ({
   handleNextPage,
 }) => {
   return (
-    <Stack>
-      <CountBlock />
-      <YearBlock
-        currentYear={currentYear}
-        selectedYear={selectedYear}
-        onYearChange={onYearChange}
-      />
+    <Container sx={{ padding: 2 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 4,
+          borderRadius: 2,
+        }}
+      >
+        <CountBlock />
+        <YearBlock
+          currentYear={currentYear}
+          selectedYear={selectedYear}
+          onYearChange={onYearChange}
+        />
 
-      <OrganizationForm organizationData={organizationData} />
-      <ResponsibilityForm />
-      <MuiButton variant="contained" color="primary" onClick={handleNextPage}>
-        Заполнение информации о пациенте
-      </MuiButton>
-    </Stack>
+        <OrganizationForm organizationData={organizationData} />
+        <ResponsibilityForm />
+        <MuiButton variant="contained" color="primary" onClick={handleNextPage}>
+          Заполнение информации о пациенте
+        </MuiButton>
+      </Paper>
+    </Container>
   );
 };

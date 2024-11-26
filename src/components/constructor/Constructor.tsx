@@ -1,5 +1,6 @@
 import createCertificate from "./generateReport.js";
 import { ConstructorProps } from "../../types.js";
+import { Button } from "@mui/material";
 
 const Constructor: React.FC<ConstructorProps> = ({
   orgData,
@@ -71,8 +72,8 @@ const Constructor: React.FC<ConstructorProps> = ({
       Patient_first_name: patient.firstName.split("").join("  "),
       Patient_middle_name: patient.middleName.split("").join("  "),
       Patient_INN: patient.patientId
-      ? patient.patientId.split("").join("  ")
-      : " ",
+        ? patient.patientId.split("").join("  ")
+        : " ",
 
       Patient_DD: patientBirthDate.DD,
       Patient_MM: patientBirthDate.MM,
@@ -107,9 +108,14 @@ const Constructor: React.FC<ConstructorProps> = ({
   };
 
   return (
-    <>
-      <button onClick={handleCreatePdf}>Создать справку</button>
-    </>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleCreatePdf}
+      sx={{ alignSelf: "flex-end", marginTop: 2 }}
+    >
+      Создать справку
+    </Button>
   );
 };
 

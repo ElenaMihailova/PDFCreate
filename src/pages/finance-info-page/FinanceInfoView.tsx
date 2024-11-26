@@ -1,5 +1,5 @@
 import FinancialInfoForm from "../../components/financial-info-form/FinancialInfoForm";
-import { Stack, Button } from "@mui/material";
+import { Button, Paper, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export const FinanceInfoView = () => {
@@ -10,16 +10,24 @@ export const FinanceInfoView = () => {
   };
 
   return (
-    <Stack>
-      <FinancialInfoForm />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleNextStep}
-        sx={{ alignSelf: "flex-end", marginTop: 2 }}
+    <Container sx={{ padding: 2 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 4,
+          borderRadius: 2,
+        }}
       >
-        Формирование справки
-      </Button>
-    </Stack>
+        <FinancialInfoForm />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNextStep}
+          sx={{ alignSelf: "flex-end", marginTop: 2 }}
+        >
+          Формирование справки
+        </Button>
+      </Paper>
+    </Container>
   );
 };

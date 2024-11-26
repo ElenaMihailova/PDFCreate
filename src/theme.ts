@@ -15,69 +15,94 @@ declare module "@mui/material/styles" {
   }
 }
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1E88E5",
-    },
-    secondary: {
-      main: "#000000",
-    },
-    text: {
-      primary: "#000000DE",
-      secondary: "#00000099",
-    },
-    background: {
-      default: "#f5f5f5",
-      paper: "#ffffff",
-    },
-  },
-
+export const theme = createTheme({
   typography: {
-    fontFamily: "Roboto, Arial, sans-serif",
-    body1: {
-      fontSize: "16px",
-      fontWeight: 400,
-    },
-    body2: {
-      fontSize: "14px",
-    },
-    caption: {
-      fontSize: "12px",
-      fontWeight: 400,
-    },
-    subtitle2: {
-      fontSize: "14px",
-      fontWeight: 500,
+    fontFamily: "'Exo', sans-serif",
+    h1: {
+      fontSize: "2rem",
+      fontWeight: 700,
+      "@media (max-width:600px)": {
+        fontSize: "1.5rem",
+      },
     },
     h2: {
-      fontSize: "34px",
-      lineHeight: "123.5%",
-      letterSpacing: "0.25px",
-      fontWeight: "400",
+      fontSize: "1.75rem",
+      fontWeight: 600,
+      "@media (max-width:600px)": {
+        fontSize: "1.25rem",
+      },
     },
-    h4: {
-      fontSize: "16px",
-      lineHeight: "150%",
-      letterSpacing: "0.15px",
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.5,
+      "@media (max-width:600px)": {
+        fontSize: "0.875rem",
+      },
     },
-    h5: {
-      fontSize: "24px",
-      fontWeight: 400,
-    },
-    h6: {
-      fontSize: "20px",
-      fontWeight: 500,
-      lineHeight: "160%",
+    button: {
+      textTransform: "none",
     },
   },
-  shape: {
-    borderRadius: 4,
+  palette: {
+    common: {
+      white: "#fff",
+      black: "#000",
+    },
+    primary: {
+      main: "#14ada9",
+      light: "#E0E0E0",
+      dark: "#A9A9A9",
+      contrastText: "#4B164C",
+    },
+    secondary: {
+      main: "#4B164C",
+    },
+    error: {
+      main: "#FA8383",
+      dark: "#e27878",
+      light: "#FF98A5",
+    },
+    warning: {
+      main: "#FECA57",
+    },
+    background: {
+      default: "#fff5f8",
+      paper: "#F5F5F5",
+    },
+    text: {
+      primary: "#14ada9",
+      secondary: "#ff7ba3",
+      disabled: "#B8B8B8",
+    },
   },
-  borders: {
-    default: "1px solid #E0E0E0",
-    defaultRadius: 1,
+  spacing: 8,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+          padding: "10px 20px",
+          fontWeight: "bold",
+        },
+        containedPrimary: {
+          color: "#fff",
+          "&:hover": {
+            backgroundColor: "#0f8e7a",
+          },
+        },
+      },
+    },
   },
 });
 
-export default theme;
+export type TTheme = typeof theme;
+export type TColorType = keyof TTheme["palette"];

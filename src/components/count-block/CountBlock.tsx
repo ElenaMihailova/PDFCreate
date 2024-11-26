@@ -34,6 +34,7 @@ const CountBlock = () => {
         value={reportNumber}
         onChange={handleReportNumberChange}
         sx={{ marginBottom: 2 }}
+        type="number"
       />
       <TextField
         label="Номер корректировки"
@@ -41,6 +42,7 @@ const CountBlock = () => {
         fullWidth
         value={reportCorNumber}
         onChange={handleCorNumberChange}
+        type="number"
       />
     </Box>
   );

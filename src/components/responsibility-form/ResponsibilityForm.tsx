@@ -6,17 +6,16 @@ import {
   setFirstName,
   setMiddleName,
   setDate,
-} from "../../redux/slices/responsibilitySlice"
+} from "../../redux/slices/responsibilitySlice";
 import { RootState } from "../../redux/store";
 
 const ResponsibilityForm: React.FC = () => {
   const dispatch = useDispatch();
-  const responsibility = useSelector((state: RootState) => state.responsibility);
+  const responsibility = useSelector(
+    (state: RootState) => state.responsibility
+  );
 
-  const handleInputChange = (
-    field: string,
-    value: string
-  ) => {
+  const handleInputChange = (field: string, value: string) => {
     switch (field) {
       case "lastName":
         dispatch(setLastName(value));
