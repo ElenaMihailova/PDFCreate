@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        backgroundColor: "#ffffff",
+        backgroundColor: "var(--background-color)",
         padding: "20px",
       }}
     >

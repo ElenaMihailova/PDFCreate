@@ -13,6 +13,7 @@ interface AuthPageViewProps {
   setLogin: (value: string) => void;
   password: string;
   setPassword: (value: string) => void;
+  errorMessage: string;
 }
 
 export const AuthPageView: React.FC<AuthPageViewProps> = ({
@@ -21,6 +22,7 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
   setLogin,
   password,
   setPassword,
+  errorMessage,
 }) => {
   return (
     <Container
@@ -52,6 +54,11 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
         >
           Вход в систему
         </Typography>
+        {errorMessage && (
+          <Typography color="error" align="center">
+            {errorMessage}
+          </Typography>
+        )}
         <Box
           component="form"
           onSubmit={handleLogin}
