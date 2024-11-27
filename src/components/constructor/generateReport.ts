@@ -62,11 +62,12 @@ async function fillPdfFields(data: CertificateData): Promise<void> {
     const customFont = await pdfDoc.embedFont(fontBytes);
 
     const form = pdfDoc.getForm();
-    const fields = form.getFields();
 
-    fields.forEach((field) => {
-      console.log("Имя поля:", field.getName());
-    });
+    // Выводит список доступных для заполнения полей
+    // const fields = form.getFields();
+    // fields.forEach((field) => {
+    //   console.log("Имя поля:", field.getName());
+    // });
 
     Object.entries(data).forEach(([key, value]) => {
       try {

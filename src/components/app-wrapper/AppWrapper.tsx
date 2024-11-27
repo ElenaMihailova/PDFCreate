@@ -17,6 +17,7 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   const handleNewCertificateClick = () => {
     localStorage.clear();
     navigate("/clinics");
+    window.location.reload();
   };
 
   const handleBackClick = () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,31 +16,45 @@ const TaxpayerForm: React.FC = () => {
   const dispatch = useDispatch();
   const taxpayer = useSelector((state: RootState) => state.taxpayer);
 
+  const [innError, setInnError] = useState<string>("");
+
   const handleInputChange = (field: string, value: string) => {
-    switch (field) {
-      case "lastName":
-        dispatch(setLastName(value));
-        break;
-      case "firstName":
-        dispatch(setFirstName(value));
-        break;
-      case "middleName":
-        dispatch(setMiddleName(value));
-        break;
-      case "taxpayerId":
-        dispatch(setTaxpayerId(value));
-        break;
-      case "birthDate":
-        dispatch(setBirthDate(value));
-        break;
-      case "documentNumber":
-        dispatch(setDocumentNumber(value));
-        break;
-      case "documentIssueDate":
-        dispatch(setDocumentIssueDate(value));
-        break;
-      default:
-        break;
+    if (field === "taxpayerId") {
+      dispatch(setTaxpayerId(value));
+    } else {
+      switch (field) {
+        case "lastName":
+          dispatch(setLastName(value));
+          break;
+        case "firstName":
+          dispatch(setFirstName(value));
+          break;
+        case "middleName":
+          dispatch(setMiddleName(value));
+          break;
+        case "birthDate":
+          dispatch(setBirthDate(value));
+          break;
+        case "documentNumber":
+          dispatch(setDocumentNumber(value));
+          break;
+        case "documentIssueDate":
+          dispatch(setDocumentIssueDate(value));
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    if (field === "taxpayerId") {
+      const value = taxpayer.taxpayerId;
+      if (value !== "" && !/^\d{12}$/.test(value)) {
+        setInnError("ИНН должен содержать 12 цифр");
+      } else {
+        setInnError("");
+      }
     }
   };
 
@@ -83,18 +97,25 @@ const TaxpayerForm: React.FC = () => {
           fullWidth
           value={taxpayer.taxpayerId}
           onChange={(e) => handleInputChange("taxpayerId", e.target.value)}
-          type="number"
+          onBlur={() => handleBlur("taxpayerId")}
+          type="text"
+          error={!!innError}
+          helperText={innError}
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
         <TextField
           label="Дата рождения"
           type="date"
-          InputLabelProps={{ shrink: true }}
           variant="outlined"
           fullWidth
           value={taxpayer.birthDate}
           onChange={(e) => handleInputChange("birthDate", e.target.value)}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
         />
       </Box>
 
@@ -118,7 +139,11 @@ const TaxpayerForm: React.FC = () => {
         <TextField
           label="Дата выдачи документа"
           type="date"
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           variant="outlined"
           fullWidth
           value={taxpayer.documentIssueDate}

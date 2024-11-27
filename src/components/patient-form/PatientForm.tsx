@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,10 +16,9 @@ const PatientForm: React.FC = () => {
   const dispatch = useDispatch();
   const patient = useSelector((state: RootState) => state.patient);
 
-  const handleInputChange = (
-    field: string,
-    value: string
-  ) => {
+  const [innError, setInnError] = useState<string>("");
+
+  const handleInputChange = (field: string, value: string) => {
     switch (field) {
       case "lastName":
         dispatch(setLastName(value));
@@ -44,6 +43,17 @@ const PatientForm: React.FC = () => {
         break;
       default:
         break;
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    if (field === "taxpayerId") {
+      const value = patient.patientId;
+      if (value !== "" && !/^\d{12}$/.test(value)) {
+        setInnError("ИНН должен содержать 12 цифр.");
+      } else {
+        setInnError("");
+      }
     }
   };
 
@@ -86,7 +96,10 @@ const PatientForm: React.FC = () => {
           fullWidth
           value={patient.patientId}
           onChange={(e) => handleInputChange("taxpayerId", e.target.value)}
-          type="number"
+          onBlur={() => handleBlur("taxpayerId")}
+          type="text"
+          error={!!innError} 
+          helperText={innError}
         />
       </Box>
       <Box sx={{ marginBottom: 2 }}>
@@ -100,14 +113,12 @@ const PatientForm: React.FC = () => {
           onChange={(e) => handleInputChange("birthDate", e.target.value)}
         />
       </Box>
-
       <Box sx={{ marginBottom: 2, textAlign: "left" }}>
         <Typography variant="body1">
           <strong>Код вида документа:</strong> 21 Паспорт гражданина Российской
           Федерации
         </Typography>
       </Box>
-
       <Box sx={{ marginBottom: 2 }}>
         <TextField
           label="Серия и номер документа"

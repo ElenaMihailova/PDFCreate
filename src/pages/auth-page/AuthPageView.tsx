@@ -5,7 +5,7 @@ import {
   Typography,
   Container,
   Paper,
-} from '@mui/material';
+} from "@mui/material";
 
 interface AuthPageViewProps {
   handleLogin: (event: React.FormEvent) => void;
@@ -15,23 +15,22 @@ interface AuthPageViewProps {
   setPassword: (value: string) => void;
 }
 
-
 export const AuthPageView: React.FC<AuthPageViewProps> = ({
   handleLogin,
   login,
   setLogin,
   password,
-  setPassword
+  setPassword,
 }) => {
   return (
     <Container
       maxWidth="xs"
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        maxWidth: '440px'
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        maxWidth: "440px",
       }}
     >
       <Paper
@@ -39,16 +38,16 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
         sx={{
           padding: 4,
           borderRadius: 2,
-          width: '100%',
+          width: "100%",
         }}
       >
         <Typography
           variant="h5"
           component="h1"
           sx={{
-            fontWeight: 'bold',
+            fontWeight: "bold",
             marginBottom: 2,
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           Вход в систему
@@ -57,8 +56,8 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
           component="form"
           onSubmit={handleLogin}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             gap: 2,
           }}
         >
@@ -86,7 +85,7 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
             fullWidth
             sx={{
               paddingY: 1.5,
-              fontWeight: 'bold',
+              fontWeight: "bold",
             }}
           >
             Войти
@@ -95,4 +94,4 @@ export const AuthPageView: React.FC<AuthPageViewProps> = ({
       </Paper>
     </Container>
   );
-}
+};

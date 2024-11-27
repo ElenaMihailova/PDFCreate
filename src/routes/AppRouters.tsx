@@ -24,5 +24,5 @@ const AppRouter = () => {
     </HashRouter>
   );
 };
- 
+
 export default AppRouter;
