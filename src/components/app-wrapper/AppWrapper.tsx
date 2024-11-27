@@ -12,18 +12,28 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children }) => {
   const navigate = useNavigate();
 
   const shouldShowHeader = location.pathname !== "/login";
+  const isOnClinicsPage = location.pathname === "/clinics";
 
   const handleNewCertificateClick = () => {
     localStorage.clear();
     navigate("/clinics");
   };
 
+  const handleBackClick = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/clinics");
+    }
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       {shouldShowHeader && (
         <Header
-          onBackClick={() => console.log("Назад")}
+          onBackClick={handleBackClick}
           onNewCertificateClick={handleNewCertificateClick}
+          disabledArrow={isOnClinicsPage}
         />
       )}
       <Box

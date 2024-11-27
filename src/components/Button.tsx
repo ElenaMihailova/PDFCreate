@@ -1,7 +1,13 @@
 import { Button as MuiButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export const GoToFinancialInfoButton: React.FC = () => {
+interface GoToFinancialInfoButtonProps {
+  isNextButtonDisabled: boolean;
+}
+
+export const GoToFinancialInfoButton: React.FC<
+  GoToFinancialInfoButtonProps
+> = ({ isNextButtonDisabled }) => {
   const navigate = useNavigate();
 
   const handleGoToFinancialInfo = () => {
@@ -14,6 +20,7 @@ export const GoToFinancialInfoButton: React.FC = () => {
       color="primary"
       onClick={handleGoToFinancialInfo}
       sx={{ margin: "16px 0" }}
+      disabled={isNextButtonDisabled}
     >
       Переход к финансовой информации
     </MuiButton>

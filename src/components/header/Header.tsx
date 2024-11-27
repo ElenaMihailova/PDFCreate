@@ -6,11 +6,13 @@ import { Logo } from "../Logo";
 interface HeaderProps {
   onBackClick: () => void;
   onNewCertificateClick: () => void;
+  disabledArrow: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onBackClick,
   onNewCertificateClick,
+  disabledArrow,
 }) => {
   return (
     <AppBar
@@ -18,21 +20,28 @@ export const Header: React.FC<HeaderProps> = ({
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         backgroundColor: "#ffffff",
-        paddingY: "20px",
+        padding: "20px",
       }}
     >
-      <Toolbar sx={{ maxWidth: "1200px", margin: "0 auto", width: "100%" }}>
+      <Toolbar sx={{ maxWidth: "1000px", margin: "0 auto", width: "100%" }}>
         <IconButton
           edge="start"
           color="primary"
           aria-label="back"
           onClick={onBackClick}
-          // sx={{ marginRight: 2 }}
+          disabled={disabledArrow}
         >
           <ArrowBackIcon />
         </IconButton>
 
-        <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Logo />
         </Box>
 

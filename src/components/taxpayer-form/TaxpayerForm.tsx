@@ -100,12 +100,12 @@ const TaxpayerForm: React.FC = () => {
 
       <Box sx={{ marginY: 2, textAlign: "left" }}>
         <Typography variant="body1">
-          Код вида документа: <strong> 21 </strong> Паспорт гражданина Российской
-          Федерации
+          Код вида документа: <strong> 21 </strong> Паспорт гражданина
+          Российской Федерации
         </Typography>
       </Box>
 
-      <Box sx={{ marginBottom: 2}}>
+      <Box sx={{ marginBottom: 2 }}>
         <TextField
           label="Серия и номер документа"
           variant="outlined"

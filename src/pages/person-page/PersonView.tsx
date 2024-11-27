@@ -1,4 +1,6 @@
 import { Container, Paper } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import TaxpayerForm from "../../components/taxpayer-form/TaxpayerForm";
 import PatientForm from "../../components/patient-form/PatientForm";
 import { TaxpayerPatientIndicator } from "../../components/taxpayer-form/TaxpayerPatientIndicator";
@@ -13,6 +15,16 @@ export const PersonView: React.FC<PersonViewProps> = ({
   indicatorValue,
   setIndicatorValue,
 }) => {
+  const taxpayer = useSelector((state: RootState) => state.taxpayer);
+
+  const isNextButtonDisabled = !(
+    taxpayer.lastName &&
+    taxpayer.firstName &&
+    taxpayer.documentNumber &&
+    taxpayer.birthDate &&
+    taxpayer.documentIssueDate
+  );
+
   return (
     <Container sx={{ padding: 2 }}>
       <Paper
@@ -28,7 +40,7 @@ export const PersonView: React.FC<PersonViewProps> = ({
           onChange={setIndicatorValue}
         />
         {indicatorValue === "0" && <PatientForm />}
-        <GoToFinancialInfoButton />
+        <GoToFinancialInfoButton isNextButtonDisabled={isNextButtonDisabled} />
       </Paper>
     </Container>
   );

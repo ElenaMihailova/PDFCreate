@@ -1,9 +1,10 @@
-import { Container, Paper } from "@mui/material";
+import { Container, Paper, Button as MuiButton } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import OrganizationForm from "../../components/organization-form/OrganizationForm";
 import CountBlock from "../../components/count-block/CountBlock";
 import ResponsibilityForm from "../../components/responsibility-form/ResponsibilityForm";
 import { YearBlock } from "../../components/year-block/YearBlock";
-import { Button as MuiButton } from "@mui/material";
 
 interface OrganisationViewProps {
   organizationData: {
@@ -24,6 +25,20 @@ export const OrganisationView: React.FC<OrganisationViewProps> = ({
   onYearChange,
   handleNextPage,
 }) => {
+  const reportNumber = useSelector(
+    (state: RootState) => state.report.reportNumber
+  );
+  const responsibility = useSelector(
+    (state: RootState) => state.responsibility
+  );
+
+  const isNextButtonDisabled = !(
+    reportNumber &&
+    responsibility.lastName &&
+    responsibility.firstName &&
+    responsibility.date
+  );
+
   return (
     <Container sx={{ padding: 2 }}>
       <Paper
@@ -42,7 +57,12 @@ export const OrganisationView: React.FC<OrganisationViewProps> = ({
 
         <OrganizationForm organizationData={organizationData} />
         <ResponsibilityForm />
-        <MuiButton variant="contained" color="primary" onClick={handleNextPage}>
+        <MuiButton
+          variant="contained"
+          color="primary"
+          onClick={handleNextPage}
+          disabled={isNextButtonDisabled}
+        >
           Заполнение информации о пациенте
         </MuiButton>
       </Paper>

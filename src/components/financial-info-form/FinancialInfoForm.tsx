@@ -16,13 +16,15 @@ const FinancialInfoForm: React.FC = () => {
   const handleServiceCode1Change = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(setServiceCode1Expense(Number(event.target.value)));
+    const value = event.target.value === "" ? 0 : Number(event.target.value);
+    dispatch(setServiceCode1Expense(value));
   };
 
   const handleServiceCode2Change = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(setServiceCode2Expense(Number(event.target.value)));
+    const value = event.target.value === "" ? 0 : Number(event.target.value);
+    dispatch(setServiceCode2Expense(value));
   };
 
   return (
@@ -36,7 +38,7 @@ const FinancialInfoForm: React.FC = () => {
           type="number"
           variant="outlined"
           fullWidth
-          value={serviceCode1Expense}
+          value={serviceCode1Expense === 0 ? "" : serviceCode1Expense}
           onChange={handleServiceCode1Change}
         />
       </Box>
@@ -46,7 +48,7 @@ const FinancialInfoForm: React.FC = () => {
           type="number"
           variant="outlined"
           fullWidth
-          value={serviceCode2Expense}
+          value={serviceCode2Expense === 0 ? "" : serviceCode2Expense}
           onChange={handleServiceCode2Change}
         />
       </Box>

@@ -46,9 +46,9 @@ export const CertificateForm = () => {
         KPP: organization.kpp,
       }
     : {
-        clinicName: "Неизвестная клиника",
-        INN: "Не указано",
-        KPP: "Не указано",
+        clinicName: " ",
+        INN: " ",
+        KPP: " ",
       };
 
   useEffect(() => {

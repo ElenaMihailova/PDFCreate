@@ -42,7 +42,7 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
         { label: "Отчество", value: taxpayer.middleName },
         {
           label: "ИНН",
-          value: taxpayer.taxpayerId || "Не указано",
+          value: taxpayer.taxpayerId || " ",
         },
         { label: "Дата рождения", value: taxpayer.birthDate },
         {
@@ -66,19 +66,19 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
               { label: "Отчество", value: patient.middleName },
               {
                 label: "ИНН",
-                value: patient.taxpayerId || "Не указано",
+                value: patient.taxpayerId || " ",
               },
               {
                 label: "Дата рождения",
-                value: patient.birthDate || "Не указано",
+                value: patient.birthDate || " ",
               },
               {
                 label: "Серия и номер документа",
-                value: patient.documentNumber || "Не указано",
+                value: patient.documentNumber || " ",
               },
               {
                 label: "Дата выдачи документа",
-                value: patient.documentIssueDate || "Не указано",
+                value: patient.documentIssueDate || " ",
               },
             ],
           },
@@ -105,11 +105,7 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
       </Typography>
       {groupedFields.map((group, groupIndex) => (
         <Box key={groupIndex} sx={{ marginBottom: 3 }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            sx={{ textAlign: "left" }}
-          >
+          <Typography variant="h6" gutterBottom sx={{ textAlign: "left" }}>
             {group.title}
           </Typography>
           {group.fields.map((field, fieldIndex) => (

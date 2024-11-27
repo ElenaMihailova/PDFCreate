@@ -92,6 +92,14 @@ export const theme = createTheme({
           borderRadius: "8px",
           padding: "10px 20px",
           fontWeight: "bold",
+          "&:focus": {
+            borderColor: "#14ada9",
+            outlineColor: "#14ada9",
+          },
+          "&:hover": {
+            borderColor: "#14ada9",
+            outlineColor: "#14ada9",
+          },
         },
         containedPrimary: {
           color: "#fff",
