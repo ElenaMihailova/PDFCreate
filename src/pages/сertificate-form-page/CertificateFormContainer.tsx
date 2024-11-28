@@ -14,9 +14,11 @@ import { setTaxpayerData } from "../../redux/slices/taxpayerSlice";
 import { setPatientData } from "../../redux/slices/patientSlice";
 import { setFinancialInfo } from "../../redux/slices/financialInfoSlice";
 import { setIndicatorValue } from "../../redux/slices/indicatorSlice";
+import { useLocation } from "react-router-dom";
 
 export const CertificateForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const clinicId = useSelector((state: RootState) => state.company.clinicId);
   const organization = medicalOrganizations.find((org) =>
@@ -73,7 +75,7 @@ export const CertificateForm = () => {
     if (savedFinancialInfo)
       dispatch(setFinancialInfo(JSON.parse(savedFinancialInfo)));
     if (savedIndicatorValue) dispatch(setIndicatorValue(savedIndicatorValue));
-  }, [dispatch]);
+  }, [location.key, dispatch]);
 
   useEffect(() => {
     localStorage.setItem("clinicId", clinicId || "");
