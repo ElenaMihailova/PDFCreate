@@ -14,11 +14,9 @@ import { setTaxpayerData } from "../../redux/slices/taxpayerSlice";
 import { setPatientData } from "../../redux/slices/patientSlice";
 import { setFinancialInfo } from "../../redux/slices/financialInfoSlice";
 import { setIndicatorValue } from "../../redux/slices/indicatorSlice";
-import { useLocation } from "react-router-dom";
 
 export const CertificateForm = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const clinicId = useSelector((state: RootState) => state.company.clinicId);
   const organization = medicalOrganizations.find((org) =>
@@ -75,29 +73,39 @@ export const CertificateForm = () => {
     if (savedFinancialInfo)
       dispatch(setFinancialInfo(JSON.parse(savedFinancialInfo)));
     if (savedIndicatorValue) dispatch(setIndicatorValue(savedIndicatorValue));
-  }, [location.key, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
-    localStorage.setItem("clinicId", clinicId || "");
-    localStorage.setItem("year", year.toString());
-    localStorage.setItem("reportNumber", reportNumber || "");
-    localStorage.setItem("reportCorNumber", reportCorNumber || "");
-    localStorage.setItem("responsibility", JSON.stringify(responsibility));
-    localStorage.setItem("taxpayer", JSON.stringify(taxpayer));
-    localStorage.setItem("patient", JSON.stringify(patient));
-    localStorage.setItem("financialInfo", JSON.stringify(financialInfo));
-    localStorage.setItem("indicatorValue", indicatorValue);
-  }, [
-    clinicId,
-    year,
-    reportNumber,
-    reportCorNumber,
-    responsibility,
-    taxpayer,
-    patient,
-    financialInfo,
-    indicatorValue,
-  ]);
+    const handlePopState = () => {
+      const savedClinicId = localStorage.getItem("clinicId");
+      const savedYear = localStorage.getItem("year");
+      const savedReportNumber = localStorage.getItem("reportNumber");
+      const savedReportCorNumber = localStorage.getItem("reportCorNumber");
+      const savedResponsibility = localStorage.getItem("responsibility");
+      const savedTaxpayer = localStorage.getItem("taxpayer");
+      const savedPatient = localStorage.getItem("patient");
+      const savedFinancialInfo = localStorage.getItem("financialInfo");
+      const savedIndicatorValue = localStorage.getItem("indicatorValue");
+
+      if (savedClinicId) dispatch(setClinicId(savedClinicId));
+      if (savedYear) dispatch(setYear(Number(savedYear)));
+      if (savedReportNumber) dispatch(setReportNumber(savedReportNumber));
+      if (savedReportCorNumber) dispatch(setCorNumber(savedReportCorNumber));
+      if (savedResponsibility)
+        dispatch(setResponsibilityData(JSON.parse(savedResponsibility)));
+      if (savedTaxpayer) dispatch(setTaxpayerData(JSON.parse(savedTaxpayer)));
+      if (savedPatient) dispatch(setPatientData(JSON.parse(savedPatient)));
+      if (savedFinancialInfo)
+        dispatch(setFinancialInfo(JSON.parse(savedFinancialInfo)));
+      if (savedIndicatorValue) dispatch(setIndicatorValue(savedIndicatorValue));
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [dispatch]);
 
   return (
     <CertificateFormView
